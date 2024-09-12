@@ -18,7 +18,7 @@ export default function LoginForm() {
                     <a
                         className={`${styles.navLink} ${activeTab === 'login' ? styles.navLinkActive : ''}`}
                         id="tab-login"
-                        href="#pills-login"
+                        href='/page.js'
                         role="tab"
                         aria-controls="pills-login"
                         aria-selected={activeTab === 'login'}
@@ -81,7 +81,7 @@ export default function LoginForm() {
                                     <a href="#!">Forgot password?</a>
                                 </div>
                             </div>
-                            <button type="submit" className={styles.btnPrimary}>Sign in</button>
+                            <button type="submit" className={styles.btnPrimary} onClick="/page.js">Sign in</button>
                             <div className={styles.textCenter}>
                                 <p>Not a member? <a href="#!">Register</a></p>
                             </div>
