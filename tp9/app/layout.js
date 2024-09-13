@@ -1,6 +1,6 @@
 "use client";  // Debe estar en la primera línea del archivo
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import styles from './layout.module.css';
@@ -9,14 +9,18 @@ export default function RootLayout({ children }) {
   const [user, setUser] = useState(null);
   const router = useRouter();
 
+  useEffect(() => {
+    // Verificar el estado del usuario al cargar el componente
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+
   const handleLogout = () => {
     localStorage.removeItem('user');
     setUser(null);
     router.push('/');
-  };
-
-  const handleLogin = (userData) => {
-    setUser(userData);
   };
 
   return (
@@ -34,24 +38,25 @@ export default function RootLayout({ children }) {
               </ul>
             </nav>
 
-            {user ? (
-              <div className={styles.userSection}>
-                <span className={styles.userName}>
-                  <i className="fas fa-user-circle"></i> {user.name}
-                </span>
-                <button className={styles.logoutButton} onClick={handleLogout}>
-                  Cerrar sesión
-                </button>
-              </div>
-            ) : (
-              <Link href='/LoginForm' className={styles.loginLink}>
-                Iniciar sesión
-              </Link>
-            )}
+            <div className={styles.userSection}>
+              {user ? (
+                <>
+                  <span className={styles.userName}>
+                    <i className="fas fa-user-circle"></i> {user.name}
+                  </span>
+                  <button className={styles.logoutButton} onClick={handleLogout}>
+                    Cerrar sesión
+                  </button>
+                </>
+              ) : (
+                <Link href='/LoginForm' className={styles.loginLink}>
+                  Iniciar sesión
+                </Link>
+              )}
+            </div>
           </header>
         </main>
-        {/* Si el children es LoginForm, pasamos la prop onLogin */}
-        {React.cloneElement(children, { onLogin: handleLogin })}
+        {children}
       </body>
     </html>
   );
