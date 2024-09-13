@@ -1,39 +1,19 @@
-'use client';
-
 import React from 'react';
-import styles from './Footer.module.css';
+import styles from './footer.module.css';
+import Page from '../../page';
 
-export default function Footer() {
-    return (
-        <>
-            <div className={styles.footer}>
-                <div className={styles.container}>
-                    <div className={styles.row}>
-                        <div className={styles.col}>
-                            <div className={styles.footerMenu}>
-                                <ul>
-                                    <li><a href="#">Home</a></li>
-                                    <li><a href="#">About</a></li>
-                                    <li><a href="#">Service</a></li>
-                                    <li><a href="#">Works</a></li>
-                                    <li><a href="#">Contact</a></li>
-                                </ul>
-                            </div>
-                            <div className={styles.footerCopyright}>
-                                <p>© 2021 Sai. All Rights Reserved.</p>
-                            </div>
-                            <div className={styles.footerProfile}>
-                                <ul>
-                                    <li><a href="#"><i className="fa fa-facebook"></i></a></li>
-                                    <li><a href="#"><i className="fa fa-twitter"></i></a></li>
-                                    <li><a href="#"><i className="fa fa-instagram"></i></a></li>
-                                    <li><a href="#"><i className="fa fa-pinterest"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </>
-    );
-}
+const Footer = () => {
+  return (
+    <footer className={styles.footer}>
+      <div className={styles.container}>
+        <p className={styles.text}>© 2024 Eventos en Vivo. Todos los derechos reservados.</p>
+        <ul className={styles.links}>
+          <li><a href="/" className={styles.link}>Eventos</a></li>
+          <li><a href="/Contact" className={styles.link}>Contacto</a></li>
+        </ul>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;

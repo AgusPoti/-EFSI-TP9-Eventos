@@ -1,26 +1,28 @@
 "use client";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-// import styles from './DetalleEvento.module.css';
-export default function DetalleEvento({params}){
-    const [loading, setLoading] = useState(false);
+import { useRouter } from "next/navigation";
+import styles from '../DetalleEvento.module.css'; 
+import Footer from '../../Components/Footer';
+export default function DetalleEvento({ params }) {
+    const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [detailEvent, setDetailEvent] = useState([]);
+    const [detailEvent, setDetailEvent] = useState(null);
+    const router = useRouter();
+
     const id = params.id;
-    const fetchEvent = async () => {
-        setLoading(true);
-        try {
-            const response = await axios.get(`http://localhost:3000/api/event/${id}`);
-            setDetailEvent(response.data);  
-        } catch (error) {
-            setError(error);
-        } finally {
-            setLoading(false);
-        }
-    };
+
     useEffect(() => {
-        fetchEvent();
-    }, []);
+        axios.get(`http://localhost:3000/api/event/${id}`)
+            .then(response => {
+                setDetailEvent(response.data);
+                setLoading(false);
+            })
+            .catch(error => {
+                setError(error);
+                setLoading(false);
+            });
+    }, [id]);
 
     if (loading) {
         return <div>Cargando...</div>;
@@ -29,22 +31,36 @@ export default function DetalleEvento({params}){
     if (error) {
         return <div>Error: {error.message}</div>;
     }
-    return(
+
+    const formatStartDate = (startDate) => {
+        if (!startDate) return "";
+        const date = new Date(startDate);
+        return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    };
+
+    return (
         <>
-         <div>
-            <h3>Detalle del evento {detailEvent.name}: </h3>
-            <ul>
-                    <div key={detailEvent.id} >
-                            <h4>Nombre del evento: {detailEvent.name} </h4>
-                            <h4>Hora de inicio: {detailEvent.start_date}</h4>
-                            <h4>Duración: {detailEvent.duration_in_minutes}</h4>
-                            <h4>Descripción: {detailEvent.description}</h4>
-                            <h4>Categoría: {detailEvent.category_name}</h4>
-                            <h4>Cpacidad máxima: {detailEvent.max_capacity}</h4>
-                            <h4>Ubicación: {detailEvent.location_name}</h4>
-                    </div>
-            </ul>
+        <div className={styles.container}>
+            <div className={styles.detalleEvento}>
+                {detailEvent && (
+                    <>
+                        <h3>{detailEvent.name}</h3>
+                        <ul style={{ listStyleType: 'none', padding: 0, margin: 0 }}>
+                            <li><strong>Hora de inicio:</strong> {formatStartDate(detailEvent.start_date)}</li>
+                            <li><strong>Duración:</strong> {detailEvent.duration_in_minutes} minutos</li>
+                            <li><strong>Descripción:</strong> {detailEvent.description}</li>
+                        </ul>
+                    </>
+                )}
+                <button
+                    className={styles.btnBack}
+                    onClick={() => router.push('/')}
+                >
+                    Volver
+                </button>
+            </div>
         </div>
+        <Footer />
         </>
-    )
+    );
 }
