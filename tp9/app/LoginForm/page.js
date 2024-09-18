@@ -1,11 +1,13 @@
-"use client";  // Esta directiva debe estar al inicio del archivo
+"use client";
 
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from './LoginForm.module.css';
+import UserContext  from '../Components/UserContext/UserContext';
 
 export default function LoginForm() {
   const [activeTab, setActiveTab] = useState('login');
+  const { setUser } = useContext(UserContext);  // Usa el contexto para actualizar el usuario
   const router = useRouter();
 
   const handleTabChange = (tab) => {
@@ -15,17 +17,13 @@ export default function LoginForm() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    // Datos simulados del usuario (deberían venir de la API de autenticación)
     const user = {
       name: "Nombre de Usuario",
-      email: "user@example.com"
+      email: "user@example.com",
     };
-
-    // Guardar el usuario en localStorage solo cuando se inicie sesión
-    localStorage.setItem('user', JSON.stringify(user));
-
-    // Redirigir al home
-    router.push('/');
+    localStorage.setItem('user', JSON.stringify(user));  // Guardar en localStorage
+    setUser(user);  // Actualizar el estado del usuario en el contexto
+    router.push('/');  // Redirigir a la página principal
   };
 
   return (
@@ -72,49 +70,7 @@ export default function LoginForm() {
 
         {activeTab === 'register' && (
           <form onSubmit={handleSubmit}>
-            <div className={styles.textCenter}>
-              <p>Sign up with:</p>
-              <button type="button" className={`${styles.btnLink} ${styles.btnFloating}`}>
-                <i className="fab fa-facebook-f"></i>
-              </button>
-              <button type="button" className={`${styles.btnLink} ${styles.btnFloating}`}>
-                <i className="fab fa-google"></i>
-              </button>
-              <button type="button" className={`${styles.btnLink} ${styles.btnFloating}`}>
-                <i className="fab fa-twitter"></i>
-              </button>
-              <button type="button" className={`${styles.btnLink} ${styles.btnFloating}`}>
-                <i className="fab fa-github"></i>
-              </button>
-            </div>
-            <p className={styles.textCenter}>or:</p>
-            <div className={styles.formOutline}>
-              <input type="text" id="registerName" className={styles.formControl} />
-              <label className={styles.formLabel} htmlFor="registerName">Name</label>
-            </div>
-            <div className={styles.formOutline}>
-              <input type="text" id="registerUsername" className={styles.formControl} />
-              <label className={styles.formLabel} htmlFor="registerUsername">Username</label>
-            </div>
-            <div className={styles.formOutline}>
-              <input type="email" id="registerEmail" className={styles.formControl} />
-              <label className={styles.formLabel} htmlFor="registerEmail">Email</label>
-            </div>
-            <div className={styles.formOutline}>
-              <input type="password" id="registerPassword" className={styles.formControl} />
-              <label className={styles.formLabel} htmlFor="registerPassword">Password</label>
-            </div>
-            <div className={styles.formOutline}>
-              <input type="password" id="registerRepeatPassword" className={styles.formControl} />
-              <label className={styles.formLabel} htmlFor="registerRepeatPassword">Repeat password</label>
-            </div>
-            <div className="form-check d-flex justify-content-center mb-4">
-              <input className="form-check-input me-2" type="checkbox" value="" id="registerCheck" defaultChecked />
-              <label className="form-check-label" htmlFor="registerCheck">
-                I have read and agree to the terms
-              </label>
-            </div>
-            <button type="submit" className={styles.btnPrimary}>Sign up</button>
+            {/* Formulario de registro */}
           </form>
         )}
       </div>
