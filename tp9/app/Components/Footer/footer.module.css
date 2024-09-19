@@ -1,40 +1,43 @@
 .footer {
-    background-color: #222;
-    padding: 20px 0;
-    color: #fff;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-  }
-  
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-  
-  .text {
-    font-size: 14px;
-  }
-  
-  .links {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .link {
-    color: #fff;
-    text-decoration: none;
-    font-size: 14px;
-  }
-  
-  .link:hover {
-    text-decoration: underline;
-  }
-  
+  background-color: #1c3a63; /* Azul fuerte */
+  color: #ffffff; /* Blanco */
+  padding: 20px; /* Aumenta el padding si es necesario */
+  display: flex;
+  justify-content: center; /* Centrar contenido horizontalmente */
+  align-items: center;
+  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2); /* Sombra en la parte superior */
+  font-family: 'Playfair Display', serif; /* Fuente consistente */
+  margin-top: 40px; /* Añade margen superior para bajar el footer */
+}
+
+.container {
+  max-width: 1200px; /* Tamaño máximo del contenedor */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.text {
+  font-size: 14px;
+  margin: 0 0 10px 0;
+}
+
+.links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+.link {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+.link:hover {
+  color: #0277bd; /* Azul más oscuro */
+}

@@ -3,7 +3,7 @@
 import React, { useState, useContext } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from './LoginForm.module.css';
-import {UserContext}  from '../Components/UserContext/UserContext';
+import { UserContext } from '../Components/UserContext/UserContext';
 
 export default function LoginForm() {
   const [activeTab, setActiveTab] = useState('login');
@@ -27,7 +27,7 @@ export default function LoginForm() {
   };
 
   return (
-    <>
+    <div className={styles.container}>
       <ul className={styles.navPills} role="tablist">
         <li className={styles.navItem} role="presentation">
           <a
@@ -55,60 +55,60 @@ export default function LoginForm() {
 
       <div className={styles.tabContent}>
         {activeTab === 'login' && (
-          <form onSubmit={handleSubmit}>
-            <div className={styles.formOutline}>
-              <input type="email" id="loginName" className={styles.formControl} required />
-              <label className={styles.formLabel} htmlFor="loginName">Email or username</label>
+          <form onSubmit={handleSubmit} className={styles.form}>
+            <div className={styles.formGroup}>
+              <label className={styles.formLabel} htmlFor="loginEmail">Email or username</label>
+              <input type="email" id="loginEmail" className={styles.formControl} required />
             </div>
-            <div className={styles.formOutline}>
-              <input type="password" id="loginPassword" className={styles.formControl} required />
+            <div className={styles.formGroup}>
               <label className={styles.formLabel} htmlFor="loginPassword">Password</label>
+              <input type="password" id="loginPassword" className={styles.formControl} required />
             </div>
             <button type="submit" className={styles.btnPrimary}>Sign in</button>
           </form>
         )}
 
         {activeTab === 'register' && (
-          <form onSubmit={handleSubmit}>
-            <div className={styles.textCenter}>
+          <form onSubmit={handleSubmit} className={styles.form}>
+            <div className={styles.socialButtons}>
               <p>Sign up with:</p>
-              <button type="button" className={`${styles.btnLink} ${styles.btnFloating}`}>
-                <i className="fab fa-facebook-f"></i>
-              </button>
-              <button type="button" className={`${styles.btnLink} ${styles.btnFloating}`}>
-                <i className="fab fa-google"></i>
-              </button>
-              <button type="button" className={`${styles.btnLink} ${styles.btnFloating}`}>
-                <i className="fab fa-twitter"></i>
-              </button>
-              <button type="button" className={`${styles.btnLink} ${styles.btnFloating}`}>
-                <i className="fab fa-github"></i>
-              </button>
+              <a href="https://www.facebook.com" className={styles.socialButton}>
+                <img src='/img/facebook.png' alt="Facebook" />
+              </a>
+              <a href="https://www.google.com" className={styles.socialButton}>
+                <img src='/img/google.png' alt="Google" />
+              </a>
+              <a href="https://twitter.com" className={styles.socialButton}>
+                <img src='/img/twitter.png' alt="Twitter" />
+              </a>
+              <a href="https://github.com" className={styles.socialButton}>
+                <img src='/img/github.png' alt="GitHub" />
+              </a>
             </div>
             <p className={styles.textCenter}>or:</p>
-            <div className={styles.formOutline}>
-              <input type="text" id="registerName" className={styles.formControl} />
+            <div className={styles.formGroup}>
               <label className={styles.formLabel} htmlFor="registerName">Name</label>
+              <input type="text" id="registerName" className={styles.formControl} />
             </div>
-            <div className={styles.formOutline}>
-              <input type="text" id="registerUsername" className={styles.formControl} />
+            <div className={styles.formGroup}>
               <label className={styles.formLabel} htmlFor="registerUsername">Username</label>
+              <input type="text" id="registerUsername" className={styles.formControl} />
             </div>
-            <div className={styles.formOutline}>
-              <input type="email" id="registerEmail" className={styles.formControl} />
+            <div className={styles.formGroup}>
               <label className={styles.formLabel} htmlFor="registerEmail">Email</label>
+              <input type="email" id="registerEmail" className={styles.formControl} />
             </div>
-            <div className={styles.formOutline}>
-              <input type="password" id="registerPassword" className={styles.formControl} />
+            <div className={styles.formGroup}>
               <label className={styles.formLabel} htmlFor="registerPassword">Password</label>
+              <input type="password" id="registerPassword" className={styles.formControl} />
             </div>
-            <div className={styles.formOutline}>
-              <input type="password" id="registerRepeatPassword" className={styles.formControl} />
+            <div className={styles.formGroup}>
               <label className={styles.formLabel} htmlFor="registerRepeatPassword">Repeat password</label>
+              <input type="password" id="registerRepeatPassword" className={styles.formControl} />
             </div>
-            <div className="form-check d-flex justify-content-center mb-4">
-              <input className="form-check-input me-2" type="checkbox" value="" id="registerCheck" defaultChecked />
-              <label className="form-check-label" htmlFor="registerCheck">
+            <div className={styles.checkboxGroup}>
+              <input className={styles.checkbox} type="checkbox" id="registerCheck" defaultChecked />
+              <label className={styles.checkboxLabel} htmlFor="registerCheck">
                 I have read and agree to the terms
               </label>
             </div>
@@ -116,6 +116,6 @@ export default function LoginForm() {
           </form>
         )}
       </div>
-    </>
+    </div>
   );
 }
