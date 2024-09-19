@@ -39,7 +39,7 @@ export default function RootLayout({ children }) {
 
   return (
       <html lang="es">
-        <body className={styles.body}>
+        <body className={styles.body} >
           <main className={styles.main}>
             <header className={styles.header}>
               <div className={styles.logo}>
@@ -57,7 +57,7 @@ export default function RootLayout({ children }) {
                   <>
                     <span className={styles.userInfo}>
                       <img 
-                        src={user.imageUrl ? user.imageUrl : "/img/person_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png"} 
+                        src={user.imageUrl ? user.imageUrl : "/img/person_28dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png"} 
                         alt={user.name} 
                         className={styles.userImage}
                       />

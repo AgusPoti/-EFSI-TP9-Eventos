@@ -49,7 +49,7 @@ body {
   background-color: #f4f4f4;
   color: #333;
   padding: 0;
-  margin: 0;
+  margin: 0 !important;
 }
 
 /* Contenedor principal */

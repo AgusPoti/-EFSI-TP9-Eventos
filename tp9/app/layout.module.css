@@ -1,20 +1,28 @@
-/* layout.module.css */
-
+.body{
+  font-family: 'Playfair Display'; 
+}
 .header {
-  background-color: #0288d1; /* Azul fuerte */
+  background-color: #1c3a63; /* Azul fuerte */
   color: #ffffff; /* Blanco */
   padding: 10px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  font-family: 'Playfair Display'; 
+  margin-top: 0; /* Asegura que no haya margen superior adicional */
 }
 
 .logo a {
   font-size: 24px;
-  font-weight: bold;
+  /*font-weight: bold;*/
   color: #ffffff;
   text-decoration: none;
+  transition: color 0.3s; /* Añadido para transición en hover */
+}
+
+.logo a:hover {
+  color: #0277bd;/* Azul más oscuro */
 }
 
 .nav ul {
@@ -33,7 +41,7 @@
 }
 
 .nav ul li a:hover {
-  color: #01579b; /* Azul más oscuro */
+  color: #0277bd; /* Azul más oscuro */
 }
 
 .userSection {
@@ -55,39 +63,47 @@
 
 .userName {
   font-size: 16px;
-  color: #333333; /* Gris oscuro */
+  color: #f0f0f0; /* Gris oscuro */
 }
 
+
 .logoutButton {
-  background-color: #0277bd; /* Azul oscuro */
-  color: #ffffff;
-  border: none;
-  padding: 8px 12px;
+  background: linear-gradient(145deg, #0277bd, #01579b); 
+  border: 2px solid #01579b; /* Borde más oscuro */
+  padding: 6px 10px; /* Reducido el padding para hacer el botón más pequeño */
   margin-left: 20px;
-  border-radius: 5px;
-  font-size: 14px;
+  border-radius: 6px; /* Borde más redondeado */
+  font-size: 13px; /* Reducido el tamaño de fuente */
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background 0.3s, border-color 0.3s;
+  color: #ffffff;
+  font-family: 'Playfair Display', serif; /* Fuente consistente */
 }
 
 .logoutButton:hover {
-  background-color: #01579b; /* Azul más oscuro */
+  background: linear-gradient(145deg, #01579b, #0277bd); /* Invertir gradiente en hover */
+  border-color: #0277bd; /* Cambiar color del borde en hover */
 }
 
 .loginLink {
-  background-color: #0277bd; /* Azul oscuro */
+  background: linear-gradient(145deg, #0277bd, #01579b); 
+  border: 2px solid #01579b; /* Borde más oscuro */
+  padding: 6px 10px; /* Reducido el padding para hacer el botón más pequeño */
+  margin-left: 20px;
+  border-radius: 6px; /* Borde más redondeado */
+  font-size: 13px; /* Reducido el tamaño de fuente */
+  cursor: pointer;
+  text-decoration: none; 
+  transition: background 0.3s, border-color 0.3s;
   color: #ffffff;
-  padding: 8px 12px;
-  border-radius: 5px;
-  text-decoration: none;
-  font-size: 14px;
-  transition: background-color 0.3s;
+  font-family: 'Playfair Display', serif; /* Fuente consistente */
 }
 
 .loginLink:hover {
-  background-color: #01579b; /* Azul más oscuro */
+  background: linear-gradient(145deg, #01579b, #0277bd); /* Invertir gradiente en hover */
+  border-color: #0277bd; /* Cambiar color del borde en hover */
 }
 
-.main {
-  padding: 20px;
-}
+
+
+

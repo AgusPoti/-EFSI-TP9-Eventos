@@ -44,11 +44,11 @@ export default function DetalleEvento({ params }) {
             <div className={styles.detalleEvento}>
                 {detailEvent && (
                     <>
-                        <h3>{detailEvent.name}</h3>
-                        <ul style={{ listStyleType: 'none', padding: 0, margin: 0 }}>
-                            <li><strong>Hora de inicio:</strong> {formatStartDate(detailEvent.start_date)}</li>
-                            <li><strong>Duración:</strong> {detailEvent.duration_in_minutes} minutos</li>
-                            <li><strong>Descripción:</strong> {detailEvent.description}</li>
+                        <h3 className={styles.h3}>{detailEvent.name}</h3>
+                        <ul className={styles.ul}style={{ listStyleType: 'none', padding: 0, margin: 0 }}>
+                            <li className={styles.li}><strong>Hora de inicio:</strong> {formatStartDate(detailEvent.start_date)}</li>
+                            <li className={styles.li}><strong>Duración:</strong> {detailEvent.duration_in_minutes} minutos</li>
+                            <li className={styles.li}><strong>Descripción:</strong> {detailEvent.description}</li>
                         </ul>
                     </>
                 )}

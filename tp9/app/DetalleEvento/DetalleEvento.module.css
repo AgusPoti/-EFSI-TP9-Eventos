@@ -1,9 +1,12 @@
+
+
 .container {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 80vh;
     padding: 20px;
+    background-color: #e3f2fd; /* Fondo similar al de ListadoEvents */
 }
 
 .detalleEvento {
@@ -18,34 +21,35 @@
 
 .h3 {
     font-size: 2rem;
-    color: #0070f3;
+    color: #01579b; /* Color azul oscuro similar al de ListadoEvents */
     margin-bottom: 20px;
     text-align: center;
+    font-family: 'Open Sans', sans-serif; /* Usar la misma fuente que en ListadoEvents */
 }
 
 .ul {
-    list-style: none;
+    list-style-type: none;
     padding: 0;
+    margin: 0;
 }
 
 .li {
     font-size: 1.2rem;
     margin-bottom: 15px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #a9cff0; /* Borde azul claro similar al fondo de eventos */
     padding-bottom: 10px;
+    color: #01579b; /* Color de texto similar al del título */
 }
 
 .li:last-child {
     border-bottom: none;
 }
 
-
-
 .btnBack {
     display: block;
     margin: 20px auto 0;
     padding: 10px 20px;
-    background-color: #0070f3;
+    background-color: #01579b; /* Azul oscuro similar al botón de ListadoEvents */
     color: white;
     border: none;
     border-radius: 5px;
@@ -57,5 +61,5 @@
 }
 
 .btnBack:hover {
-    background-color: #005bb5;
+    background-color: #0277bd; /* Azul más claro al pasar el mouse */
 }

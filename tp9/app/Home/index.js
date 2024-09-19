@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useRouter } from 'next/navigation';
-// import styles from './Home.module.css';
+import styles from './Home.module.css';
 
 function ListadoEvents() {
     const [loading, setLoading] = useState(false);
@@ -28,21 +28,21 @@ function ListadoEvents() {
     }, []);
 
     if (loading) {
-        return <div>Cargando...</div>;
+        return <div className={styles.loading}>Cargando...</div>;
     }
 
     if (error) {
-        return <div>Error: {error.message}</div>;
+        return <div className={styles.error}>Error: {error.message}</div>;
     }
 
     return (
-        <div>
-            <h3>Eventos</h3>
-            <ul>
+        <div className={styles.container}>
+            <h3 className={styles.heading}>Eventos</h3>
+            <ul className={styles.eventList}>
                 {events.map(event => (
-                    <li key={event.id}>
+                    <li key={event.id} className={styles.eventItem}>
                         <h1>{event.name} - {event.description} - {event.category_name}</h1>
-                        <button onClick={() => router.push(`/DetalleEvento/${event.id}`)}>
+                        <button className={styles.eventButton} onClick={() => router.push(`/DetalleEvento/${event.id}`)}>
                             Ver Detalles
                         </button>
                     </li>
@@ -50,7 +50,6 @@ function ListadoEvents() {
             </ul>
         </div>
     );
-    
 }
 
 export default ListadoEvents;
