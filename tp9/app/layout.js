@@ -1,47 +1,46 @@
-// app/layout.js
 "use client";
 
 import React, { useState, useContext, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import styles from './layout.module.css';
-import UserContext  from './Components/UserContext/UserContext';
+import { UserContext }  from './Components/UserContext/UserContext';
+
+
 export default function RootLayout({ children }) {
-  const [loading, setLoading] = useState(true);  // Estado de carga
-  const [user, setUser] = useState(null);  // Estado del usuario
+  const [loading, setLoading] = useState(true);  
+  const [user, setUser] = useState(null);  
   const router = useRouter();
 
   useEffect(() => {
-    // Recuperar el usuario almacenado en localStorage
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
       try {
         const parsedUser = JSON.parse(storedUser);
         if (parsedUser && parsedUser.name) {
-          setUser(parsedUser);  // Establecer el usuario si existe en localStorage
+          setUser(parsedUser);  
         }
       } catch (error) {
         console.error("Error al parsear el usuario almacenado:", error);
       }
     }
-    setLoading(false);  // Terminar el estado de carga
+    setLoading(false);  
   }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem('user');  // Eliminar el usuario de localStorage
-    setUser(null);  // Resetear el estado de usuario
-    router.push('/');  // Redirigir al inicio
+    localStorage.removeItem('user');  
+    setUser(null);  
+    router.push('/');  
   };
 
   if (loading) {
-    return <div>Cargando...</div>;  // Mostrar un indicador de carga hasta que se termine de cargar el usuario
+    return <div>Cargando...</div>;  
   }
 
   return (
-    <UserContext.Provider value={{ user, setUser }}> {/* Proveer el contexto del usuario */}
       <html lang="es">
-        <body>
-          <main>
+        <body className={styles.body}>
+          <main className={styles.main}>
             <header className={styles.header}>
               <div className={styles.logo}>
                 <Link href="/">MiSitio</Link>
@@ -56,8 +55,13 @@ export default function RootLayout({ children }) {
               <div className={styles.userSection}>
                 {user ? (
                   <>
-                    <span className={styles.userName}>
-                      <i className="fas fa-user-circle"></i> {user.name}
+                    <span className={styles.userInfo}>
+                      <img 
+                        src={user.imageUrl ? user.imageUrl : "/img/person_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png"} 
+                        alt={user.name} 
+                        className={styles.userImage}
+                      />
+                      <span className={styles.userName}>{user.name}</span>
                     </span>
                     <button className={styles.logoutButton} onClick={handleLogout}>
                       Cerrar sesión
@@ -71,10 +75,10 @@ export default function RootLayout({ children }) {
               </div>
             </header>
           </main>
-          {children}
+           <UserContext.Provider value={{ user, setUser }}> 
+            {children}
+          </UserContext.Provider>
         </body>
       </html>
-    </UserContext.Provider>
   );
-  
 }
