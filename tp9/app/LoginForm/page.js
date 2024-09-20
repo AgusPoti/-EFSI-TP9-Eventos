@@ -79,7 +79,7 @@ export default function LoginForm() {
                 <img src='/img/google.png' alt="Google" />
               </a>
               <a href="https://twitter.com" className={styles.socialButton}>
-                <img src='/img/twitter.png' alt="Twitter" />
+                <img src='/img/images.png' alt="Twitter" />
               </a>
               <a href="https://github.com" className={styles.socialButton}>
                 <img src='/img/github.png' alt="GitHub" />
