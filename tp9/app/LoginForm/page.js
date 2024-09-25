@@ -4,7 +4,7 @@ import React, { useState, useContext } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from './LoginForm.module.css';
 import { UserContext } from '../Components/UserContext/UserContext';
-
+import Footer from '../Components/Footer/index'
 export default function LoginForm() {
   const [activeTab, setActiveTab] = useState('login');
   const { setUser } = useContext(UserContext);  
@@ -27,6 +27,7 @@ export default function LoginForm() {
   };
 
   return (
+    <>
     <div className={styles.container}>
       <ul className={styles.navPills} role="tablist">
         <li className={styles.navItem} role="presentation">
@@ -117,5 +118,7 @@ export default function LoginForm() {
         )}
       </div>
     </div>
+    <Footer/>
+    </>
   );
 }

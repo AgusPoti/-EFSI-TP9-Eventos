@@ -1,13 +1,12 @@
-/* LoginForm.module.css */
-
-/* Contenedor principal */
 .container {
   max-width: 500px;
   margin: 0 auto;
   padding: 20px;
-  background: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin: 20px auto 0;
+  background-color: #ffffff; /* Fondo blanco */
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid #a9cff0; /* Bordes azules */
 }
 
 /* Estilos para las pestañas de navegación */
@@ -27,16 +26,16 @@
   display: block;
   padding: 10px;
   text-align: center;
-  color: #007bff;
+  color: #01579b; /* Azul coherente con el tema de la app */
   text-decoration: none;
-  font-size: 16px;
+  font-size: 1rem;
   border-bottom: 2px solid transparent;
   transition: color 0.3s, border-color 0.3s;
 }
 
 .navLinkActive {
-  color: #0056b3;
-  border-bottom: 2px solid #0056b3;
+  color: #01579b; /* Color activo */
+  border-bottom: 2px solid #01579b; /* Línea activa azul */
 }
 
 /* Estilos para el contenido de las pestañas */
@@ -59,30 +58,31 @@
   display: block;
   margin-bottom: 5px;
   font-weight: 600;
-  color: #333;
+  color: #01579b; /* Color principal */
 }
 
 .formControl {
   width: 100%;
   padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  border: 1px solid #a9cff0; /* Borde azul suave */
+  border-radius: 6px;
   font-size: 16px;
+  background-color: #ffffff; /* Fondo blanco */
 }
 
 .btnPrimary {
-  background-color: #007bff;
+  background-color: #01579b; /* Azul principal */
   border: none;
   color: #fff;
   padding: 10px 15px;
-  border-radius: 4px;
+  border-radius: 6px;
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
 .btnPrimary:hover {
-  background-color: #0056b3;
+  background-color: #0277bd; /* Color más oscuro al hacer hover */
 }
 
 /* Estilos para los botones de redes sociales */
@@ -98,8 +98,8 @@
   justify-content: center;
   width: 50px;
   height: 50px;
-  background: #fff;
-  border: 1px solid #ddd;
+  background-color: #ffffff; /* Fondo blanco */
+  border: 1px solid #a9cff0; /* Bordes azules */
   border-radius: 50%;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s, box-shadow 0.3s;
@@ -119,6 +119,7 @@
 .textCenter {
   text-align: center;
   margin: 15px 0;
+  color: #01579b; /* Azul principal */
 }
 
 /* Estilos para el checkbox */
@@ -134,5 +135,5 @@
 
 .checkboxLabel {
   font-size: 14px;
-  color: #333;
+  color: #01579b; /* Azul principal */
 }

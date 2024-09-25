@@ -1,37 +1,53 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    background-color: #f0f0f0;
-    min-height: 100vh;
-  }
-  
-  .title {
-    font-size: 2rem;
-    margin-bottom: 20px;
-  }
-  
-  .cards {
-    display: flex;
-    gap: 20px;
-  }
-  
-  .card {
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    width: 300px;
-    text-align: center;
-  }
-  
-  .name {
-    font-size: 1.5rem;
-    color: #333;
-  }
-  
-  .email, .phone {
-    color: #555;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #ffffff; /* Fondo blanco */
+  min-height: 100vh;
+  border: 1px solid #a9cff0; /* Bordes azules */
+}
+
+.title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #01579b; /* Mantiene el color azul principal */
+  font-family: 'Open Sans', sans-serif;
+}
+
+.cards {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap; /* Permite que las tarjetas se adapten mejor en pantallas pequeñas */
+  justify-content: center;
+}
+
+.card {
+  background-color: #ffffff; /* Fondo blanco */
+  border: 1px solid #a9cff0; /* Bordes azules */
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 300px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.name {
+  font-size: 1.5rem;
+  color: #01579b;
+  font-weight: 600;
+  font-family: 'Roboto', sans-serif;
+}
+
+.email,
+.phone {
+  color: #01579b; /* Color azul para el texto de email y teléfono */
+  font-size: 1rem;
+  font-family: 'Open Sans', sans-serif;
+}

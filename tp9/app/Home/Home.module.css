@@ -4,17 +4,19 @@
 
 .container {
     padding: 1rem;
-    background-color: #e3f2fd;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #e3f2fd; /* Fondo blanco */
+    border: 1px solid #a9cff0; /* Bordes azules */
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
     font-family: 'Roboto', sans-serif;
 }
 
 .heading {
     color: #01579b;
-    margin-bottom: 1rem;
-    font-size: 1.5rem; /* Tamaño de fuente reducido para el título */
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
     font-family: 'Open Sans', sans-serif;
+    text-align: center;
 }
 
 .eventList {
@@ -22,48 +24,60 @@
     padding: 0;
     margin: 0;
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Máximo de tres eventos por fila */
-    gap: 1rem; /* Espacio entre los eventos */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Ajusta para que sea responsivo */
+    gap: 1.5rem; /* Espacio mayor entre los eventos */
 }
 
 .eventItem {
-    color: #ffffff;
-    display:flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 0.3rem; /* Padding reducido para hacer el evento más fino */
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    max-width: 100%;
+    background-color: #ffffff; /* Fondo blanco */
+    border: 1px solid #a9cff0; /* Bordes azules */
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
     text-align: left;
-    background-color: #a9cff0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     font-family: 'Open Sans', sans-serif;
-    font-size: 0.875rem; /* Tamaño de fuente reducido para los eventos */
-    line-height: 1.2; /* Espaciado reducido entre líneas */
+    font-size: 1rem;
 }
 
-/* Colores específicos para cada evento */
+.eventItem:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
 
+.eventItem h1 {
+    color: #01579b;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.eventItem p {
+    color: #01579b; /* Cambié a azul */
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+}
 
 .eventButton {
     background-color: #01579b;
     color: #ffffff;
     border: none;
-    padding: 0.25rem 0.5rem; /* Padding reducido para el botón */
-    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
     cursor: pointer;
-    font-size: 0.875rem; /* Tamaño de fuente reducido para el botón */
+    font-size: 0.9rem;
     font-family: 'Roboto', sans-serif;
+    transition: background-color 0.3s ease;
 }
 
 .eventButton:hover {
     background-color: #0277bd;
 }
 
-.loading, .error {
+.loading,
+.error {
     color: #01579b;
-    font-size: 1rem; /* Tamaño de fuente reducido para mensajes de carga y error */
+    font-size: 1.2rem;
     text-align: center;
     margin-top: 2rem;
     font-family: 'Roboto', sans-serif;
