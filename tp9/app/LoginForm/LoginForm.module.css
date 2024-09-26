@@ -1,15 +1,40 @@
 .container {
-  max-width: 500px;
-  margin: 0 auto;
+  width: 70%; /* Más grande horizontalmente */
+  max-width: 600px; /* Limita el ancho máximo */
   padding: 20px;
-  margin: 20px auto 0;
-  background-color: #ffffff; /* Fondo blanco */
+  background-color: #ffffff;
   border-radius: 12px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
   border: 1px solid #a9cff0; /* Bordes azules */
+  margin-top: 50px; /* Añade espacio entre el header y el formulario */
+  margin-bottom: 20px; /* Espacio entre el formulario y el footer */
 }
 
-/* Estilos para las pestañas de navegación */
+.container:first-child {
+  margin-top: 0;
+}
+.body {
+  background-color: #e3f2fd; /* Fondo celeste */
+  margin: 0;
+  padding: 30;
+  min-height: 90vh; /* Asegura que ocupe al menos toda la pantalla */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra horizontalmente */
+  position: relative;
+}
+body > .Footer {
+  margin-top: 20px; /* Ajusta la distancia entre el formulario y el footer */
+  margin-bottom: 40px; /* Ajusta el espacio entre el footer y el borde inferior */
+}
+
+.Footer {
+  position: absolute;
+  bottom: 10px; /* Mueve el footer más arriba */
+  width: 100%; /* Para que ocupe todo el ancho de la pantalla */
+  text-align: center; /* Centra el contenido del footer */
+}
+
 .navPills {
   display: flex;
   justify-content: space-around;
@@ -26,7 +51,7 @@
   display: block;
   padding: 10px;
   text-align: center;
-  color: #01579b; /* Azul coherente con el tema de la app */
+  color: #01579b;
   text-decoration: none;
   font-size: 1rem;
   border-bottom: 2px solid transparent;
@@ -34,16 +59,14 @@
 }
 
 .navLinkActive {
-  color: #01579b; /* Color activo */
+  color: #01579b; 
   border-bottom: 2px solid #01579b; /* Línea activa azul */
 }
 
-/* Estilos para el contenido de las pestañas */
 .tabContent {
   padding: 20px;
 }
 
-/* Estilos generales para el formulario */
 .form {
   display: flex;
   flex-direction: column;

@@ -6,7 +6,7 @@
     align-items: center;
     min-height: 80vh;
     padding: 20px;
-    background-color: #e3f2fd; /* Fondo similar al de ListadoEvents */
+    background-color: #e3f2fd; 
 }
 
 .detalleEvento {
@@ -49,7 +49,7 @@
     display: block;
     margin: 20px auto 0;
     padding: 10px 20px;
-    background-color: #01579b; /* Azul oscuro similar al botón de ListadoEvents */
+    background-color: #01579b; 
     color: white;
     border: none;
     border-radius: 5px;
@@ -61,5 +61,5 @@
 }
 
 .btnBack:hover {
-    background-color: #0277bd; /* Azul más claro al pasar el mouse */
+    background-color: #0277bd; 
 }

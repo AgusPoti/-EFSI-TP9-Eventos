@@ -28,6 +28,7 @@ export default function LoginForm() {
 
   return (
     <>
+    <div className={styles.body}>
     <div className={styles.container}>
       <ul className={styles.navPills} role="tablist">
         <li className={styles.navItem} role="presentation">
@@ -71,22 +72,6 @@ export default function LoginForm() {
 
         {activeTab === 'register' && (
           <form onSubmit={handleSubmit} className={styles.form}>
-            <div className={styles.socialButtons}>
-              <p>Sign up with:</p>
-              <a href="https://www.facebook.com" className={styles.socialButton}>
-                <img src='/img/facebook.png' alt="Facebook" />
-              </a>
-              <a href="https://www.google.com" className={styles.socialButton}>
-                <img src='/img/google.png' alt="Google" />
-              </a>
-              <a href="https://twitter.com" className={styles.socialButton}>
-                <img src='/img/images.png' alt="Twitter" />
-              </a>
-              <a href="https://github.com" className={styles.socialButton}>
-                <img src='/img/github.png' alt="GitHub" />
-              </a>
-            </div>
-            <p className={styles.textCenter}>or:</p>
             <div className={styles.formGroup}>
               <label className={styles.formLabel} htmlFor="registerName">Name</label>
               <input type="text" id="registerName" className={styles.formControl} />
@@ -119,6 +104,7 @@ export default function LoginForm() {
       </div>
     </div>
     <Footer/>
+    </div>
     </>
   );
 }
