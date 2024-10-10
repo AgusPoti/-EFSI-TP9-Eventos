@@ -8,22 +8,32 @@ import Footer from '../Components/Footer/index'
 export default function LoginForm() {
   const [activeTab, setActiveTab] = useState('login');
   const { setUser } = useContext(UserContext);  
+  const [error, setError] = useState(null);
   const router = useRouter();
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post("http://localhost:3000/api/user/login", {
+        username, pasword
+      });
 
-    const user = {
-      name: "carla",
-      email: "carla@gmail.com",
-    };
-    localStorage.setItem('user', JSON.stringify(user));  
-    setUser(user);  
-    router.push('/');  
+      if (response.status === 200) {
+        const { user, token } = response.data;
+        localStorage.setItem("user", JSON.stringify(user));
+        localStorage.setItem("token", token);
+        router.push(`/`);
+      } else {
+        setError(response.data.message || "Error en el login");
+      }
+    } catch (error) {
+      console.error("Error during login:", error);
+      setError("Error al iniciar sesión");
+    }
   };
 
   return (
@@ -59,8 +69,8 @@ export default function LoginForm() {
         {activeTab === 'login' && (
           <form onSubmit={handleSubmit} className={styles.form}>
             <div className={styles.formGroup}>
-              <label className={styles.formLabel} htmlFor="loginEmail">Email or username</label>
-              <input type="email" id="loginEmail" className={styles.formControl} required />
+              <label className={styles.formLabel} htmlFor="loginEmail">Username</label>
+              <input type="username" id="loginEmail" className={styles.formControl} required />
             </div>
             <div className={styles.formGroup}>
               <label className={styles.formLabel} htmlFor="loginPassword">Password</label>

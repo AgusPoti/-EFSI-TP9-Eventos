@@ -41,7 +41,7 @@ function ListadoEvents() {
             <ul className={styles.eventList}>
                 {events.map(event => (
                     <li key={event.id} className={styles.eventItem}>
-                        <h1>{event.name} {/*- {event.description}*/} - {event.category_name}</h1>
+                        <h1>{event.name}  - {event.category_name}</h1>
                         <button className={styles.eventButton} onClick={() => router.push(`/DetalleEvento/${event.id}`)}>
                             Ver Detalles
                         </button>
