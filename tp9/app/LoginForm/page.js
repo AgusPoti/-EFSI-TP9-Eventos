@@ -5,12 +5,16 @@ import { useRouter } from 'next/navigation';
 import styles from './LoginForm.module.css';
 import { UserContext } from '../Components/UserContext/UserContext';
 import Footer from '../Components/Footer/index'
+import  axios from "axios";
 export default function LoginForm() {
   const [activeTab, setActiveTab] = useState('login');
   const { setUser } = useContext(UserContext);  
   const [error, setError] = useState(null);
   const router = useRouter();
-
+ const [username, setUsername]= useState("");
+ const [password, setPassword]= useState("");
+ const [first_name, setFirst_name]= useState("");
+ const [last_name, setLast_name]= useState("");
   const handleTabChange = (tab) => {
     setActiveTab(tab);
   };
@@ -19,7 +23,7 @@ export default function LoginForm() {
     e.preventDefault();
     try {
       const response = await axios.post("http://localhost:3000/api/user/login", {
-        username, pasword
+        username, password
       });
 
       if (response.status === 200) {
@@ -70,11 +74,15 @@ export default function LoginForm() {
           <form onSubmit={handleSubmit} className={styles.form}>
             <div className={styles.formGroup}>
               <label className={styles.formLabel} htmlFor="loginEmail">Username</label>
-              <input type="username" id="loginEmail" className={styles.formControl} required />
+              <input type="username" id="loginEmail" className={styles.formControl} required 
+               onChange={(e) => setUsername(e.target.value)}
+              />
             </div>
             <div className={styles.formGroup}>
               <label className={styles.formLabel} htmlFor="loginPassword">Password</label>
-              <input type="password" id="loginPassword" className={styles.formControl} required />
+              <input type="password" id="loginPassword" className={styles.formControl} required 
+               onChange={(e) => setPassword(e.target.value)}
+              />
             </div>
             <button type="submit" className={styles.btnPrimary}>Sign in</button>
           </form>
@@ -83,24 +91,16 @@ export default function LoginForm() {
         {activeTab === 'register' && (
           <form onSubmit={handleSubmit} className={styles.form}>
             <div className={styles.formGroup}>
-              <label className={styles.formLabel} htmlFor="registerName">Name</label>
-              <input type="text" id="registerName" className={styles.formControl} />
-            </div>
-            <div className={styles.formGroup}>
               <label className={styles.formLabel} htmlFor="registerUsername">Username</label>
-              <input type="text" id="registerUsername" className={styles.formControl} />
-            </div>
-            <div className={styles.formGroup}>
-              <label className={styles.formLabel} htmlFor="registerEmail">Email</label>
-              <input type="email" id="registerEmail" className={styles.formControl} />
+              <input type="text" id="registerUsername" className={styles.formControl} 
+               onChange={(e) => setUsername(e.target.value)}
+              />
             </div>
             <div className={styles.formGroup}>
               <label className={styles.formLabel} htmlFor="registerPassword">Password</label>
-              <input type="password" id="registerPassword" className={styles.formControl} />
-            </div>
-            <div className={styles.formGroup}>
-              <label className={styles.formLabel} htmlFor="registerRepeatPassword">Repeat password</label>
-              <input type="password" id="registerRepeatPassword" className={styles.formControl} />
+              <input type="password" id="registerPassword" className={styles.formControl} 
+               onChange={(e) => setPassword(e.target.value)}
+              />
             </div>
             <div className={styles.checkboxGroup}>
               <input className={styles.checkbox} type="checkbox" id="registerCheck" defaultChecked />
