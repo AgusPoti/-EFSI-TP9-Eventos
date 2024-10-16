@@ -15,10 +15,30 @@ export default function LoginForm() {
  const [password, setPassword]= useState("");
  const [first_name, setFirst_name]= useState("");
  const [last_name, setLast_name]= useState("");
-  const handleTabChange = (tab) => {
+  const handleTabChange = async(tab) => {
     setActiveTab(tab);
+    setError(null); 
   };
-
+  const handleRegister = async(e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post("http://localhost:3000/api/user/register", {
+        first_name, last_name, username, password 
+      });
+      console.log("response status ", response.status)
+      if (response.status === 201) {
+        const { user, token } = response.data;
+        localStorage.setItem("user", JSON.stringify(user));
+        localStorage.setItem("token", token);
+        router.push(`/`);
+      } else {
+        setError(response.data.message || "Error en el register");
+      }
+    } catch (error) {
+      console.error("Error during register:", error);
+      setError("Error al registrarse");
+    }
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -81,7 +101,7 @@ export default function LoginForm() {
             <div className={styles.formGroup}>
               <label className={styles.formLabel} htmlFor="loginPassword">Password</label>
               <input type="password" id="loginPassword" className={styles.formControl} required 
-               onChange={(e) => setPassword(e.target.value)}
+               onChange={(e) => setUsername(e.target.value)}
               />
             </div>
             <button type="submit" className={styles.btnPrimary}>Sign in</button>
@@ -89,7 +109,19 @@ export default function LoginForm() {
         )}
 
         {activeTab === 'register' && (
-          <form onSubmit={handleSubmit} className={styles.form}>
+              <form onSubmit={handleRegister} className={styles.form}>
+              <div className={styles.formGroup}>
+              <label className={styles.formLabel} htmlFor="registerName">Name</label>
+              <input type="text" id="registerName" className={styles.formControl} 
+               onChange={(e) => setFirst_name(e.target.value)}
+              />
+            </div>
+            <div className={styles.formGroup}>
+              <label className={styles.formLabel} htmlFor="registerName">Last name</label>
+              <input type="text" id="lastName" className={styles.formControl} 
+               onChange={(e) => setLast_name(e.target.value)}
+              />
+            </div>
             <div className={styles.formGroup}>
               <label className={styles.formLabel} htmlFor="registerUsername">Username</label>
               <input type="text" id="registerUsername" className={styles.formControl} 
