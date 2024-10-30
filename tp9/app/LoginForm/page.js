@@ -31,7 +31,12 @@ export default function LoginForm() {
         localStorage.setItem("user", JSON.stringify(user));
         localStorage.setItem("token", token);
         router.push(`/`);
-      } else {
+      } 
+      if(response.status === 400){
+        alert("La contraseña debe tener al menos 8 dígitos");
+
+      }
+      else {
         setError(response.data.message || "Error en el register");
       }
     } catch (error) {
@@ -45,7 +50,6 @@ export default function LoginForm() {
       const response = await axios.post("http://localhost:3000/api/user/login", {
         username, password
       });
-
       if (response.status === 200) {
         const { user, token } = response.data;
         localStorage.setItem("user", JSON.stringify(user));
@@ -101,7 +105,7 @@ export default function LoginForm() {
             <div className={styles.formGroup}>
               <label className={styles.formLabel} htmlFor="loginPassword">Password</label>
               <input type="password" id="loginPassword" className={styles.formControl} required 
-               onChange={(e) => setUsername(e.target.value)}
+               onChange={(e) => setPassword(e.target.value)}
               />
             </div>
             <button type="submit" className={styles.btnPrimary}>Sign in</button>

@@ -1,11 +1,11 @@
 "use client";
 
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import styles from './layout.module.css';
-import { UserContext }  from './Components/UserContext/UserContext';
-
+import { UserContext } from './Components/UserContext/UserContext';
+import SomeComponent from './SomeComponent/SomeComponent'; 
 
 export default function RootLayout({ children }) {
   const [loading, setLoading] = useState(true);  
@@ -17,9 +17,14 @@ export default function RootLayout({ children }) {
     if (storedUser) {
       try {
         const parsedUser = JSON.parse(storedUser);
-        if (parsedUser && parsedUser.name) {
-          setUser(parsedUser);  
-        }
+        const userInfo = {
+          id: parsedUser.id,
+          name: `${parsedUser.first_name} ${parsedUser.last_name}`, 
+          username: parsedUser.username,
+          imageUrl: parsedUser.imageUrl || null, 
+        };
+        setUser(userInfo);
+        console.log("USER ", userInfo);
       } catch (error) {
         console.error("Error al parsear el usuario almacenado:", error);
       }
@@ -27,9 +32,13 @@ export default function RootLayout({ children }) {
     setLoading(false);  
   }, []);
 
+  useEffect(() => {
+    console.log("User actualizado:", user);
+  }, [user]);
+
   const handleLogout = () => {
     localStorage.removeItem('user');  
-    setUser(null);  
+    setUser(null);
     router.push('/');  
   };
 
@@ -38,8 +47,9 @@ export default function RootLayout({ children }) {
   }
 
   return (
+    <UserContext.Provider value={{ user, setUser }}> 
       <html lang="es">
-        <body className={styles.body} >
+        <body className={styles.body}>
           <main className={styles.main}>
             <header className={styles.header}>
               <div className={styles.logo}>
@@ -55,7 +65,7 @@ export default function RootLayout({ children }) {
               <div className={styles.userSection}>
                 {user ? (
                   <>
-                    <span className={styles.userInfo}>
+                    <span className={styles.user}>
                       <img 
                         src={user.imageUrl ? user.imageUrl : "/img/person_28dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png"} 
                         alt={user.name} 
@@ -74,11 +84,11 @@ export default function RootLayout({ children }) {
                 )}
               </div>
             </header>
-          </main>
-           <UserContext.Provider value={{ user, setUser }}> 
             {children}
-          </UserContext.Provider>
+            <SomeComponent />
+          </main>
         </body>
       </html>
+    </UserContext.Provider>
   );
 }
