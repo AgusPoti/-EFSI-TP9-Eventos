@@ -21,11 +21,13 @@ export default function App() {
   return (
     <>
       <main className={styles.mainContent}>
-        <h1>Bienvenido{user ? `, ${user.username}` : ''}</h1>
-        <button onClick={handleViewEvents} className={styles.viewEventsButton}>
-          Ver eventos
-        </button>
-      </main>
+  <h1 className={styles.h1}>¡Hola, {user ? `, ${user.username}` : ''}! Bienvenido a tu espacio de eventos</h1>
+  <button onClick={handleViewEvents} className={styles.viewEventsButton}>
+    Ver eventos
+  </button>
+</main>
+
+
       <Footer />
       </>
   );

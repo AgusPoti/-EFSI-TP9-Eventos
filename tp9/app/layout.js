@@ -6,6 +6,8 @@ import { useRouter } from 'next/navigation';
 import styles from './layout.module.css';
 import { UserContext } from './Components/UserContext/UserContext';
 import SomeComponent from './SomeComponent/SomeComponent'; 
+import Image from 'next/image';
+import imgSrc from "../public/Img/usuario.png"; 
 
 export default function RootLayout({ children }) {
   const [loading, setLoading] = useState(true);  
@@ -33,7 +35,6 @@ export default function RootLayout({ children }) {
   }, []);
 
   useEffect(() => {
-    console.log("User actualizado:", user);
   }, [user]);
 
   const handleLogout = () => {
@@ -45,6 +46,7 @@ export default function RootLayout({ children }) {
   if (loading) {
     return <div>Cargando...</div>;  
   }
+
 
   return (
     <UserContext.Provider value={{ user, setUser }}> 
@@ -68,11 +70,7 @@ export default function RootLayout({ children }) {
                 {user ? (
                   <>
                     <span className={styles.user}>
-                      <img 
-                        src={user.imageUrl ? user.imageUrl : "/img/person_28dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png"} 
-                        alt={user.name} 
-                        className={styles.userImage}
-                      />
+                      <Image src={imgSrc} className={styles.userImage}/>
                       <span className={styles.userName}>{user.name}</span>
                     </span>
                     <button className={styles.logoutButton} onClick={handleLogout}>

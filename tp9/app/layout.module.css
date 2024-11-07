@@ -51,8 +51,8 @@
 
 .userInfo {
   display: flex;
-  align-items: center;
-  gap: 10px;
+  align-items: center;  /* Alinea la imagen y el nombre al centro de forma horizontal */
+  gap: 5px;  
 }
 
 .userImage {
@@ -63,7 +63,7 @@
 
 .userName {
   font-size: 16px;
-  color: #f0f0f0; /* Gris oscuro */
+  color: #f0f0f0; 
 }
 
 
