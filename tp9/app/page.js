@@ -1,21 +1,32 @@
+// app.js
 'use client';
 
-import React ,{useState}from 'react';
+import React, { useContext } from 'react';
 import Footer from './Components/Footer';
-import ListadoEvents from './Home/index'
 import styles from "./page.module.css";
-import {UserContext } from './Components/UserContext/UserContext';
-export default function LoginPage() {
-  const [user, setUser] = useState(null);
+import { UserContext } from './Components/UserContext/UserContext';
+import { useRouter } from 'next/navigation';
+
+export default function App() {
+  const router = useRouter();
+  const { user } = useContext(UserContext);
+  const handleViewEvents = () => {
+    if (user) {
+      router.push('/Home'); 
+    } else {
+      router.push('/LoginForm'); 
+    }
+  };
+
   return (
     <>
-
-    <UserContext.Provider value={{ user,setUser }}/>
-    <main className={styles.mainContent}>
-          <ListadoEvents />
-    </main>
-    <Footer></Footer>
-    </>
+      <main className={styles.mainContent}>
+        <h1>Bienvenido{user ? `, ${user.username}` : ''}</h1>
+        <button onClick={handleViewEvents} className={styles.viewEventsButton}>
+          Ver eventos
+        </button>
+      </main>
+      <Footer />
+      </>
   );
 }
-

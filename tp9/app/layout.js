@@ -57,7 +57,9 @@ export default function RootLayout({ children }) {
               </div>
               <nav className={styles.nav}>
                 <ul>
-                  <li><Link href="/">Home</Link></li>
+                  {user?(<li><Link href="/Home">Home</Link></li>)
+                  :(<li><Link href="/LoginForm">Home</Link></li>)
+                  }
                   <li><Link href="/Contact">Contacto</Link></li>
                 </ul>
               </nav>
@@ -85,7 +87,6 @@ export default function RootLayout({ children }) {
               </div>
             </header>
             {children}
-            <SomeComponent />
           </main>
         </body>
       </html>
