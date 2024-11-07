@@ -30,6 +30,7 @@ export default function LoginForm() {
         const { user, token } = response.data;
         localStorage.setItem("user", JSON.stringify(user));
         localStorage.setItem("token", token);
+        setUser(user);
         router.push(`/`);
       } 
       if(response.status === 400){
@@ -54,6 +55,7 @@ export default function LoginForm() {
         const { user, token } = response.data;
         localStorage.setItem("user", JSON.stringify(user));
         localStorage.setItem("token", token);
+        setUser(user);
         router.push(`/`);
       } else {
         setError(response.data.message || "Error en el login");
