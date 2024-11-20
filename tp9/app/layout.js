@@ -71,7 +71,7 @@ export default function RootLayout({ children }) {
                   <>
                     <span className={styles.user}>
                       <Image src={imgSrc} className={styles.userImage}/>
-                      <span className={styles.userName}>{user.name}</span>
+                      <span className={styles.userName}>{user.username}</span>
                     </span>
                     <button className={styles.logoutButton} onClick={handleLogout}>
                       Cerrar sesión

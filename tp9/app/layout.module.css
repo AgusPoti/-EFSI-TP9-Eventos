@@ -64,6 +64,7 @@
 .userName {
   font-size: 16px;
   color: #f0f0f0; 
+  margin-bottom:3%
 }
 
 
@@ -107,3 +108,29 @@
 
 
 
+.userSection {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Espacio entre los elementos */
+}
+
+.user {
+  display: flex;
+  align-items: center; /* Asegura que el nombre y la imagen estén alineados verticalmente */
+  gap: 8px; /* Espacio entre la imagen y el nombre */
+}
+
+.userImage {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.userName {
+  font-size: 16px;
+  color: #f0f0f0;
+}
+
+.logoutButton {
+  margin-left: 15px; /* Espaciado uniforme respecto al resto de elementos */
+}
