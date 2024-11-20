@@ -19,25 +19,31 @@ export default function LoginForm() {
     setActiveTab(tab);
     setError(null); 
   };
-  const handleRegister = async(e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
+
+    // Validar que la contraseña tiene al menos 3 caracteres
+    if (password.length < 3) {
+      alert("La contraseña debe tener al menos 3 caracteres.");
+      return; // Detener la ejecución si la contraseña es demasiado corta
+    }
+
     try {
       const response = await axios.post("http://localhost:3000/api/user/register", {
         first_name, last_name, username, password 
       });
-      console.log("response status ", response.status)
+      
       if (response.status === 201) {
-        const { user, token } = response.data;
+        const user = response.data.newUser;
+        const token = response.data.newUser.password;
         localStorage.setItem("user", JSON.stringify(user));
         localStorage.setItem("token", token);
         setUser(user);
         router.push(`/`);
       } 
-      if(response.status === 400){
-        alert("La contraseña debe tener al menos 8 dígitos");
-
-      }
-      else {
+      if (response.status === 400) {
+        alert("La contraseña debe tener al menos 3 dígitos");
+      } else {
         setError(response.data.message || "Error en el register");
       }
     } catch (error) {
@@ -45,6 +51,7 @@ export default function LoginForm() {
       setError("Error al registrarse");
     }
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -58,9 +65,11 @@ export default function LoginForm() {
         setUser(user);
         router.push(`/`);
       } else {
+        alert("Ingresa correctamente tu nombre de usuario o tu contraseña");
         setError(response.data.message || "Error en el login");
       }
     } catch (error) {
+      alert("Ingresa correctamente tu nombre de usuario o tu contraseña");
       console.error("Error during login:", error);
       setError("Error al iniciar sesión");
     }

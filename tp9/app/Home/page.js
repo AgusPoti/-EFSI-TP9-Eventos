@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useRouter } from 'next/navigation';
 import styles from './Home.module.css';
+import Footer from '../Components/Footer/index';
 
 function ListadoEvents() {
     const [loading, setLoading] = useState(false);
@@ -36,6 +37,7 @@ function ListadoEvents() {
     }
 
     return (
+        <>
         <div className={styles.container}>
             <h3 className={styles.heading}>Eventos</h3>
             <ul className={styles.eventList}>
@@ -49,6 +51,8 @@ function ListadoEvents() {
                 ))}
             </ul>
         </div>
+        <Footer></Footer>
+        </>
     );
 }
 
